@@ -1,0 +1,3 @@
+digraph "com.example:maven-pm-bearer-probe:jar:1.0.0-SNAPSHOT" { 
+	"com.example:maven-pm-bearer-probe:jar:1.0.0-SNAPSHOT" -> "com.example.gar:gar-canary:jar:0.0.1:compile" ; 
+ } 
