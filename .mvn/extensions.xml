@@ -1,0 +1,7 @@
+<extensions xmlns="http://maven.apache.org/EXTENSIONS/1.0.0">
+      <extension>
+        <groupId>com.google.cloud.artifactregistry</groupId>
+        <artifactId>artifactregistry-maven-wagon</artifactId>
+        <version>MATCH_PROD</version>
+      </extension>
+    </extensions>

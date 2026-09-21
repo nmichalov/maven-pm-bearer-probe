@@ -3,16 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.example</groupId>
   <artifactId>maven-pm-bearer-probe</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>maven-pm-bearer-probe</name>
-  <description>Probe repo for Endor PackageManager Maven + Google Artifact Registry (GH App) resolution.</description>
+  <description>Probe: Maven + Google Artifact Registry wagon/ADC resolution test</description>
+
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Set deliberately. Match the customer's .mvn/extensions.xml version to
+         reproduce their failure faithfully; bump to latest to test whether a
+         newer wagon accepts external_account/WIF. Value below is illustrative. -->
+    <artifactregistry.wagon.version>2.2.1</artifactregistry.wagon.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>gar-wagon</id>
+      <url>artifactregistry://us-maven.pkg.dev/silken-granite-312300/wagon-test</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>com.example.gar</groupId>
@@ -20,4 +37,14 @@
       <version>0.0.1</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>com.google.cloud.artifactregistry</groupId>
+        <artifactId>artifactregistry-maven-wagon</artifactId>
+        <version>${artifactregistry.wagon.version}</version>
+      </extension>
+    </extensions>
+  </build>
 </project>
